@@ -1,5 +1,6 @@
 package mainPackage;
 
+import authentifizierungPackage.PasswortManager;
 import guiPackage.MainFrame;
 
 import javax.swing.*;
@@ -11,5 +12,6 @@ public class Main {
         MainFrame.getMainFrame().setSize(450, 400);
         MainFrame.getMainFrame().setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         MainFrame.getMainFrame().setLocationRelativeTo(null);
+        System.out.println(PasswortManager.getPasswortManager().getMap());
     }
 }
