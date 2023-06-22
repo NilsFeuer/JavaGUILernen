@@ -8,8 +8,9 @@ import java.awt.event.ActionListener;
 public class MainFrame extends JFrame {
     Container c;
     JButton loginButton;
+    private static MainFrame mainFrame = new MainFrame();
 
-    public MainFrame() {
+    private MainFrame() {
         c = getContentPane();
         loginButton = new JButton("Einloggen");
         LoginButtonListener loginButtonListener = new LoginButtonListener();
@@ -17,6 +18,9 @@ public class MainFrame extends JFrame {
 
 
         c.add(loginButton, BorderLayout.NORTH);
+    }
+    public static MainFrame getMainFrame(){
+        return mainFrame;
     }
 
     public class LoginButtonListener implements ActionListener {
