@@ -1,5 +1,6 @@
 package guiPackage;
 
+import authentifizierungPackage.AuthentifizierungKlasse;
 import authentifizierungPackage.PasswortManager;
 
 import javax.swing.*;
@@ -43,12 +44,22 @@ public class LoginFrame extends JFrame {
 
     public void checkLogin() {
         Map<String, String> databaseClone = PasswortManager.getPasswortManager().getMap();
-        for (String username : databaseClone.keySet()) {
-            if (userText.getText().equals(username) && passwordField.getText().equals(databaseClone.get(username))) {
-                JOptionPane.showMessageDialog(c, "Eingeloggt!");
-                break;
-            }
+        AuthentifizierungKlasse authentifizierungKlasse = new AuthentifizierungKlasse();
+        if (authentifizierungKlasse.checkLogin(databaseClone, this)) {
+            JOptionPane.showMessageDialog(c, "Eingeloggt");
+            this.setVisible(false);
+        } else {
+            JOptionPane.showMessageDialog(c, "Falsches Passwort/Username");
         }
+    }
+
+    public String getUserText() {
+        return userText.getText();
+    }
+
+    public String getPasswordField() {
+        String password = new String(passwordField.getPassword());
+        return password;
     }
 
     public class LoginButtonListener implements ActionListener {

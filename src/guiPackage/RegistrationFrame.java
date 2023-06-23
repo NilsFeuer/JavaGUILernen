@@ -42,17 +42,25 @@ public class RegistrationFrame extends JFrame {
         c.add(resetButton);
     }
 
+    public RegistrationFrame getOwnInstance() {
+        return this;
+    }
+
     public class RegistrationButtonListener implements ActionListener {
         @Override
         public void actionPerformed(ActionEvent e) {
             if (passwordField.getText().equals(repeatPasswordField.getText())) {
                 PasswortManager.getPasswortManager().setMap(usernameText.getText(), passwordField.getText());
                 System.out.println(PasswortManager.getPasswortManager().getMap());
+                JOptionPane.showMessageDialog(c, "Erfolgreich registriert");
+                usernameText.setText("");
+                RegistrationFrame regFrame = getOwnInstance();
+                regFrame.setVisible(false);
             } else {
                 JOptionPane.showMessageDialog(c, "Passwörter stimmen nicht überein");
-                passwordField.setText("");
-                repeatPasswordField.setText("");
             }
+            passwordField.setText("");
+            repeatPasswordField.setText("");
         }
     }
 }
