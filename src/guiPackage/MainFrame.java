@@ -8,7 +8,7 @@ import java.awt.event.ActionListener;
 public class MainFrame extends JFrame {
     Container c;
     JButton loginButton, registrationButton;
-    private static MainFrame mainFrame = new MainFrame();
+    private static final MainFrame mainFrame = new MainFrame();
 
     private MainFrame() {
         c = getContentPane();

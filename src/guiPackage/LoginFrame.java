@@ -58,8 +58,7 @@ public class LoginFrame extends JFrame {
     }
 
     public String getPasswordField() {
-        String password = new String(passwordField.getPassword());
-        return password;
+        return new String(passwordField.getPassword());
     }
 
     public class LoginButtonListener implements ActionListener {
