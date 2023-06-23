@@ -42,27 +42,39 @@ public class RegistrationFrame extends JFrame {
         c.add(resetButton);
     }
 
-    public RegistrationFrame getOwnInstance() {
-        return this;
+    public void checkRegistration() {
+        if (equalPasswords() && checkEmptyFields()) {
+            PasswortManager.getPasswortManager().setMap(usernameText.getText(), getPassword());
+            JOptionPane.showMessageDialog(c, "Erfolgreich registriert");
+            usernameText.setText("");
+            this.setVisible(false);
+        } else {
+            JOptionPane.showMessageDialog(c, "Passwörter stimmen nicht überein");
+        }
+        passwordField.setText("");
+        repeatPasswordField.setText("");
+    }
+
+    private String getPassword() {
+        return new String(passwordField.getPassword());
+    }
+
+    private String getRePassword() {
+        return new String(repeatPasswordField.getPassword());
+    }
+
+    private Boolean equalPasswords() {
+        return getPassword().equals(getRePassword());
+    }
+
+    private Boolean checkEmptyFields() {
+        return !getPassword().equals("") && !usernameText.getText().equals("");
     }
 
     public class RegistrationButtonListener implements ActionListener {
         @Override
         public void actionPerformed(ActionEvent e) {
-            String password = new String(passwordField.getPassword());
-            String rePassword = new String(repeatPasswordField.getPassword());
-            if (password.equals(rePassword) && !password.equals("") && !usernameText.getText().equals("")) {
-                PasswortManager.getPasswortManager().setMap(usernameText.getText(), password);
-                System.out.println(PasswortManager.getPasswortManager().getMap());
-                JOptionPane.showMessageDialog(c, "Erfolgreich registriert");
-                usernameText.setText("");
-                RegistrationFrame regFrame = getOwnInstance();
-                regFrame.setVisible(false);
-            } else {
-                JOptionPane.showMessageDialog(c, "Passwörter stimmen nicht überein");
-            }
-            passwordField.setText("");
-            repeatPasswordField.setText("");
+            checkRegistration();
         }
     }
 }
