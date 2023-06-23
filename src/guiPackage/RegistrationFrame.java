@@ -49,8 +49,10 @@ public class RegistrationFrame extends JFrame {
     public class RegistrationButtonListener implements ActionListener {
         @Override
         public void actionPerformed(ActionEvent e) {
-            if (passwordField.getText().equals(repeatPasswordField.getText())) {
-                PasswortManager.getPasswortManager().setMap(usernameText.getText(), passwordField.getText());
+            String password = new String(passwordField.getPassword());
+            String rePassword = new String(repeatPasswordField.getPassword());
+            if (password.equals(rePassword) && !password.equals("") && !usernameText.getText().equals("")) {
+                PasswortManager.getPasswortManager().setMap(usernameText.getText(), password);
                 System.out.println(PasswortManager.getPasswortManager().getMap());
                 JOptionPane.showMessageDialog(c, "Erfolgreich registriert");
                 usernameText.setText("");
