@@ -13,6 +13,7 @@ public class MainFrame extends JFrame {
     private MainFrame() {
         c = getContentPane();
         c.setLayout(new FlowLayout());
+
         loginButton = new JButton("Einloggen");
         LoginButtonListener loginButtonListener = new LoginButtonListener();
         loginButton.addActionListener(loginButtonListener);
@@ -23,6 +24,7 @@ public class MainFrame extends JFrame {
 
         c.add(registrationButton);
         c.add(loginButton);
+
     }
 
     public static MainFrame getMainFrame() {

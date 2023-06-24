@@ -2,6 +2,7 @@ package guiPackage;
 
 import authentifizierungPackage.AuthentifizierungKlasse;
 import authentifizierungPackage.PasswortManager;
+import mainPackage.Main;
 
 import javax.swing.*;
 import java.awt.*;
@@ -46,8 +47,13 @@ public class LoginFrame extends JFrame {
         Map<String, String> databaseClone = PasswortManager.getPasswortManager().getMap();
         AuthentifizierungKlasse authentifizierungKlasse = new AuthentifizierungKlasse();
         if (authentifizierungKlasse.checkLogin(databaseClone, this)) {
-            JOptionPane.showMessageDialog(c, "Eingeloggt");
+            LoggedInFrame eingeloggt = new LoggedInFrame();
+            eingeloggt.setVisible(true);
+            eingeloggt.setSize(300, 200);
+            eingeloggt.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
             this.setVisible(false);
+            MainFrame mainFrame = MainFrame.getMainFrame();
+            mainFrame.setVisible(false);
         } else {
             JOptionPane.showMessageDialog(c, "Falsches Passwort/Username");
         }
