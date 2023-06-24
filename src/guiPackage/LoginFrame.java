@@ -2,12 +2,13 @@ package guiPackage;
 
 import authentifizierungPackage.AuthentifizierungKlasse;
 import authentifizierungPackage.PasswortManager;
-import mainPackage.Main;
 
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.KeyEvent;
+import java.awt.event.KeyListener;
 import java.util.Map;
 
 public class LoginFrame extends JFrame {
@@ -23,6 +24,9 @@ public class LoginFrame extends JFrame {
         loginButton = new JButton("Einloggen");
         LoginButtonListener loginButtonListener = new LoginButtonListener();
         loginButton.addActionListener(loginButtonListener);
+        LoginButtonKeyListener loginButtonKeyListener = new LoginButtonKeyListener();
+        loginButton.addKeyListener(loginButtonKeyListener);
+
         resetButton = new JButton("Zurücksetzen");
         ResetButtonListener resetButtonListener = new ResetButtonListener();
         resetButton.addActionListener(resetButtonListener);
@@ -81,4 +85,24 @@ public class LoginFrame extends JFrame {
             passwordField.setText("");
         }
     }
+
+    public class LoginButtonKeyListener implements KeyListener {
+        @Override
+        public void keyTyped(KeyEvent e) {
+
+        }
+
+        @Override
+        public void keyPressed(KeyEvent e) {
+            if (e.getKeyCode() == KeyEvent.VK_ENTER) {
+                checkLogin();
+            }
+        }
+
+        @Override
+        public void keyReleased(KeyEvent e) {
+
+        }
+    }
+
 }
